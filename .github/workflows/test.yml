@@ -35,10 +35,12 @@ jobs:
           cat $GITHUB_OUTPUT
 
       - name: step2
+        env:
+          var1: ${{ steps.step1.outputs.testvar1 }}
+          var2: ${{ steps.step1.outputs.testvar2 }}
         run: |
-          echo "testvar1 ${{ steps.step1.outputs.testvar1 }}"
-          echo "testvar2 ${{ steps.step1.outputs.testvar2 }}"
+          echo "testvar1: $var1"
+          echo "testvar2: $var2"
       
-          ./gradlew aaaaa
-
+          
       
