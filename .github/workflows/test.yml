@@ -32,7 +32,7 @@ jobs:
           testvar2="change2"
           testvar2="change3"
 
-          if $testvar1 = "change1"; then
+          if [ $testvar1 = "change1" ]; then
             testvar2="asdf"
           fi
 
