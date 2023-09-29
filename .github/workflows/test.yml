@@ -57,6 +57,21 @@ jobs:
           echo "testvar1: ${var1}"
           echo "testvar2: ${var2}"
           echo "var_underscore: $var_underscore"
+          
+          apk_input="testteapk"
+          echo "apk_input=$apk_input" >> $GITHUB_OUTPUT
       
           
+      - name: Sign Android Stage
+        uses: will-bank/will-android-sign-stage-action@main
+        env:
+          apk_input: ${{ steps.step2.outputs.apk_input }}
+
+        with:
+          encoded-string: a
+          signing-key-alias: b
+          signing-key-password: c
+          signing-store-password: d
+          input: app/build/outputs/apk/stage${hardening}/release/${apk_input}
+          output: app/build/outputs/apk/stage${hardening}/release/app-stage-release-signed.apk
       
