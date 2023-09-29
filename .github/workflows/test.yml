@@ -63,7 +63,7 @@ jobs:
       
           
       - name: Sign Android Stage
-        uses: will-bank/will-android-sign-stage-action@main
+        uses: will-bank/test-aux-action@main
         env:
           apk_input: ${{ steps.step2.outputs.apk_input }}
 
