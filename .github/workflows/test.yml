@@ -1,0 +1,38 @@
+name: test
+
+# on:
+#   workflow_dispatch:
+#     inputs:
+#       version-suffix:
+#         description: "Informe um sufixo para identificar a versão:"
+#         type: string
+#         default: "test"
+#         required: true
+#   push:
+#     branches: ["release/*"]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  testing:
+    runs-on: ubuntu-latest
+    env:
+      hardening: "Dexguard" # values are "Dexguard" or "Normal"
+    steps:
+      - name: ttttt
+        run: |
+          echo "testvar1 ${testvar1}"
+          echo "testvar2 ${testvar2}"
+          export testvar1="change1"
+          export testvar2="change2"
+
+      - name: t2
+        run: |
+          echo "testvar1 ${testvar1}"
+          echo "testvar2 ${testvar2}"
+      
+          ./gradlew aaaaa
+
+      
