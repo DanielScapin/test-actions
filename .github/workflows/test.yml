@@ -31,6 +31,7 @@ jobs:
           testvar2="change2"
           echo "testvar1=$testvar1" >> $GITHUB_OUTPUT
           echo "testvar2=$testvar2" >> $GITHUB_OUTPUT
+          echo "GITHUB_OUTPUT: $GITHUB_OUTPUT"
 
       - name: step2
         run: |
