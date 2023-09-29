@@ -31,6 +31,7 @@ jobs:
           testvar1="change1"
           testvar2="change2"
           testvar2="change3"
+          under_score="value ok"
 
           if [ $testvar1 = "change1" ]; then
             testvar2="asdf"
@@ -38,6 +39,7 @@ jobs:
 
           echo "testvar1=$testvar1" >> $GITHUB_OUTPUT
           echo "testvar2=$testvar2" >> $GITHUB_OUTPUT
+          echo "under_score=$under_score" >> $GITHUB_OUTPUT
           echo "GITHUB_OUTPUT: "
           cat $GITHUB_OUTPUT
 
@@ -46,6 +48,7 @@ jobs:
         env:
           var1: ${{ steps.step1.outputs.testvar1 }}
           var2: ${{ steps.step1.outputs.testvar2 }}
+          var_underscore = ${{ steps.step1.outputs.under_score }}
         run: |
           echo "tv1 : ${{ steps.step1.outputs.testvar1 }}"
           echo "tv2 : ${{ steps.step1.outputs.testvar2 }}"
@@ -53,6 +56,7 @@ jobs:
           echo "testvar2: $var2"
           echo "testvar1: ${var1}"
           echo "testvar2: ${var2}"
+          echo "var_underscore: $var_underscore"
       
           
       
