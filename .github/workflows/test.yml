@@ -23,7 +23,8 @@ jobs:
     env:
       hardening: "Dexguard" # values are "Dexguard" or "Normal"
     steps:
-      - name: step1
+      - name: step 1
+        id: step1
         run: |
           echo "testvar1 ${testvar1}"
           echo "testvar2 ${testvar2}"
@@ -34,11 +35,14 @@ jobs:
           echo "GITHUB_OUTPUT: "
           cat $GITHUB_OUTPUT
 
-      - name: step2
+      - name: step 2
+        id: step2
         env:
           var1: ${{ steps.step1.outputs.testvar1 }}
           var2: ${{ steps.step1.outputs.testvar2 }}
         run: |
+          echo "tv1 : ${{ steps.step1.outputs.testvar1 }}"
+          echo "tv2 : ${{ steps.step1.outputs.testvar2 }}"
           echo "testvar1: $var1"
           echo "testvar2: $var2"
       
