@@ -22,13 +22,15 @@ jobs:
     runs-on: ubuntu-latest
     env:
       hardening: "Dexguard" # values are "Dexguard" or "Normal"
+      testvar1:
+      testvar2: 
     steps:
       - name: ttttt
         run: |
           echo "testvar1 ${testvar1}"
           echo "testvar2 ${testvar2}"
-          set testvar1="change1"
-          set testvar2="change2"
+          testvar1="change1"
+          testvar2="change2"
 
       - name: t2
         run: |
