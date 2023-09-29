@@ -31,6 +31,11 @@ jobs:
           testvar1="change1"
           testvar2="change2"
           testvar2="change3"
+
+          if $testvar1 = "change1"; then
+            testvar2="asdf"
+          fi
+
           echo "testvar1=$testvar1" >> $GITHUB_OUTPUT
           echo "testvar2=$testvar2" >> $GITHUB_OUTPUT
           echo "GITHUB_OUTPUT: "
