@@ -68,6 +68,6 @@ jobs:
           apk_input: ${{ steps.step2.outputs.apk_input }}
 
         with:
-          input: "app/build/outputs/apk/stage${hardening}/release/${apk_input}"
+          input: "app/build/outputs/apk/stage${{ env.hardening }}/release/${{ env.apk_input }}"
           output: "app/build/outputs/apk/stage${hardening}/release/app-stage-release-signed.apk"
       
