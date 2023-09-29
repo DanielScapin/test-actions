@@ -62,8 +62,8 @@ jobs:
           echo "apk_input=$apk_input" >> $GITHUB_OUTPUT
       
           
-      - name: Sign Android Stage
-        uses: will-bank/test-aux-action@main
+      - name: aux action
+        uses: DanielScapin/test-aux-action@main
         env:
           apk_input: ${{ steps.step2.outputs.apk_input }}
 
