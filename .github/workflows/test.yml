@@ -22,20 +22,20 @@ jobs:
     runs-on: ubuntu-latest
     env:
       hardening: "Dexguard" # values are "Dexguard" or "Normal"
-      testvar1:
-      testvar2: 
     steps:
-      - name: ttttt
+      - name: step1
         run: |
           echo "testvar1 ${testvar1}"
           echo "testvar2 ${testvar2}"
           testvar1="change1"
           testvar2="change2"
+          echo "testvar1=$testvar1" >> $GITHUB_OUTPUT
+          echo "testvar2=$testvar2" >> $GITHUB_OUTPUT
 
-      - name: t2
+      - name: step2
         run: |
-          echo "testvar1 ${testvar1}"
-          echo "testvar2 ${testvar2}"
+          echo "testvar1 ${{ steps.step1.outputs.testvar1 }}"
+          echo "testvar2 ${{ steps.step1.outputs.testvar2 }}"
       
           ./gradlew aaaaa
 
