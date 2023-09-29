@@ -27,8 +27,8 @@ jobs:
         run: |
           echo "testvar1 ${testvar1}"
           echo "testvar2 ${testvar2}"
-          export testvar1="change1"
-          export testvar2="change2"
+          set testvar1="change1"
+          set testvar2="change2"
 
       - name: t2
         run: |
