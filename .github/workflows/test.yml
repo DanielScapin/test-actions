@@ -48,7 +48,7 @@ jobs:
         env:
           var1: ${{ steps.step1.outputs.testvar1 }}
           var2: ${{ steps.step1.outputs.testvar2 }}
-          var_underscore = ${{ steps.step1.outputs.under_score }}
+          var_underscore: ${{ steps.step1.outputs.under_score }}
         run: |
           echo "tv1 : ${{ steps.step1.outputs.testvar1 }}"
           echo "tv2 : ${{ steps.step1.outputs.testvar2 }}"
