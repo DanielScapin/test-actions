@@ -68,10 +68,6 @@ jobs:
           apk_input: ${{ steps.step2.outputs.apk_input }}
 
         with:
-          encoded-string: a
-          signing-key-alias: b
-          signing-key-password: c
-          signing-store-password: d
           input: app/build/outputs/apk/stage${hardening}/release/${apk_input}
           output: app/build/outputs/apk/stage${hardening}/release/app-stage-release-signed.apk
       
