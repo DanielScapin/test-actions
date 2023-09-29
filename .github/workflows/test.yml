@@ -46,6 +46,8 @@ jobs:
           echo "tv2 : ${{ steps.step1.outputs.testvar2 }}"
           echo "testvar1: $var1"
           echo "testvar2: $var2"
+          echo "testvar1: ${var1}"
+          echo "testvar2: ${var2}"
       
           
       
