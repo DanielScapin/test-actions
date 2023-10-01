@@ -25,8 +25,7 @@ jobs:
       - name: print inputs
         run: |
           custom=${{ github.event.inputs.custom }}
-          default=${{ github.event.inputs.custom.default }}
-          custom=${$custom:-"defauting2"}
+          custom=${custom:-"defauting2"}
           echo "custom-value: $custom"
 
       - name: step 1
