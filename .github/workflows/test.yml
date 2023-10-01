@@ -6,7 +6,7 @@ on:
       custom-value:
         description: "valor custom:"
         type: string
-        default: "defvalue"
+        default: 'defvalue'
         required: false
   push:
     branches: ["*"]
