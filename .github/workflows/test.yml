@@ -3,10 +3,9 @@ name: test
 on:
   workflow_dispatch:
     inputs:
-      custom:
+      custom_input:
         description: "valor custom \"Dexguard\" or \"Normal\":"
         type: choice
-        default: 'Dexguard'
         options:
         - Dexguard
         - Normal
@@ -22,14 +21,19 @@ jobs:
   testing:
     runs-on: ubuntu-latest
     env:
-      hardening: "Dexguard" # values are "Dexguard" or "Normal"
+      hardening_ibnput: "Dexguard" # values are "Dexguard" or "Normal"
     steps:
+
+      - name: Normalize inputs
+        run: |
+          custom=${{ github.event.inputs.custom_input }}
+          custom=${custom:-"defauting2"}
+          echo "custom-value: $custom"
+          echo "custom=$custom" >> $GITHUB_ENV
 
       - name: print inputs
         run: |
-          custom=${{ github.event.inputs.custom }}
-          custom=${custom:-"defauting2"}
-          echo "custom-value: $custom"
+          echo "$custom: ${{ env.custom }}"
 
       - name: step 1
         id: step1
