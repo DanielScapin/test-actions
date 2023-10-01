@@ -33,7 +33,7 @@ jobs:
 
       - name: print inputs
         run: |
-          echo "$custom: ${{ env.custom }}"
+          echo "custom: ${{ env.custom }}"
 
       - name: step 1
         id: step1
