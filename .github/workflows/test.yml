@@ -2,16 +2,15 @@ name: test
 
 on: [push]
 
-# on:
-#   workflow_dispatch:
-#     inputs:
-#       version-suffix:
-#         description: "Informe um sufixo para identificar a versão:"
-#         type: string
-#         default: "test"
-#         required: true
-#   push:
-#     branches: ["release/*"]
+on:
+  workflow_dispatch:
+    inputs:
+      custom-value:
+        description: "valor custom:"
+        type: string
+        default: "defvalue"
+        required: false
+  [push]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -23,6 +22,13 @@ jobs:
     env:
       hardening: "Dexguard" # values are "Dexguard" or "Normal"
     steps:
+
+      - name: print inputs
+        env:
+          custom: ${{ inputs.custom-value }}
+        run: |
+          echo "custom-value: ${custom}"
+
       - name: step 1
         id: step1
         run: |
