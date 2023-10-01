@@ -3,7 +3,7 @@ name: test
 on:
   workflow_dispatch:
     inputs:
-      custom-value:
+      custom:
         description: "valor custom:"
         type: string
         default: 'defvalue'
@@ -24,10 +24,10 @@ jobs:
 
       - name: print inputs
         run: |
-          custom=${{ inputs.custom-value }}
-          default=${{ inputs.custom-value.default }}
+          custom=${{ inputs.custom }}
+          default=${{ inputs.custom.default }}
           custom=${$custom:-$default}
-          echo "custom-value: ${custom}"
+          echo "custom-value: $custom"
 
       - name: step 1
         id: step1
