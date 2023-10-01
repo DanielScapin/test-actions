@@ -5,8 +5,10 @@ on:
     inputs:
       custom:
         description: "valor custom:"
-        type: string
-        default: 'defvalue'
+        type: choice
+        options:
+        - Dexguard
+        - Normal
         required: false
   push:
     branches: ["*"]
