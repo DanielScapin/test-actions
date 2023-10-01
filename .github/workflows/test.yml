@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       custom:
-        description: "valor custom:"
+        description: "valor custom \"Dexguard\" or \"Normal\":"
         type: choice
         options:
         - Dexguard
