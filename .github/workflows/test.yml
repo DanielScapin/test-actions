@@ -6,6 +6,7 @@ on:
       custom:
         description: "valor custom \"Dexguard\" or \"Normal\":"
         type: choice
+        default: 'Dexguard'
         options:
         - Dexguard
         - Normal
