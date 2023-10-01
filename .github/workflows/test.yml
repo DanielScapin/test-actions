@@ -7,7 +7,7 @@ on:
         description: "valor custom:"
         type: string
         default: "defvalue"
-        required: true
+        required: false
   push:
     branches: ["*"]
 
@@ -24,7 +24,7 @@ jobs:
 
       - name: print inputs
         env:
-          custom: ${{ inputs.custom-value }}
+          custom: ${${{ inputs.custom-value }}:-${{ inputs.custom-value.default }}}
         run: |
           echo "custom-value: ${custom}"
 
