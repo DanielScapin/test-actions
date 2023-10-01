@@ -10,7 +10,7 @@ on:
         options:
         - Dexguard
         - Normal
-        required: false
+        required: true
   push:
     branches: ["*"]
 
