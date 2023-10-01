@@ -26,7 +26,7 @@ jobs:
 
       - name: Normalize inputs
         run: |
-          custom=${{ github.event.inputs.custom_input }}
+          custom=${{ inputs.custom_input }}
           custom=${custom:-"defauting2"}
           echo "custom-value: $custom"
           echo "custom=$custom" >> $GITHUB_ENV
