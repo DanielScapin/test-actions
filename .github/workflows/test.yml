@@ -67,15 +67,15 @@ jobs:
 
       - name: conditional step yes
         id: condstep
-        if: ${{ env.hardening == "Dexguard" }}
+        if: ${{ env.hardening == 'Dexguard' }}
         run: |
           echo "yes"
 
       - name: conditional step no
         id: condstep
-        if: ${{ env.hardening != "Dexguard" }}
+        if: ${{ env.hardening != 'Dexguard' }}
         run: |
-          echo "no"
+          echo "'no"
 
 
       - name: aux action
