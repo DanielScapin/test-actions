@@ -7,7 +7,7 @@ on:
         description: "valor custom:"
         type: string
         default: "defvalue"
-        required: false
+        required: true
   push:
     branches: ["*"]
 
