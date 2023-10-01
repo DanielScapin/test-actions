@@ -10,7 +10,8 @@ on:
         type: string
         default: "defvalue"
         required: false
-  [push]
+  push:
+    branches: ["*"]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
