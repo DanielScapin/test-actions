@@ -63,7 +63,21 @@ jobs:
           apk_input="testteapk"
           echo "apk_input=$apk_input" >> $GITHUB_OUTPUT
       
-          
+        
+
+      - name: conditional step yes
+        id: condstep
+        if: ${{ env.hardening == "Dexguard" }}
+        run: |
+          echo "yes"
+
+      - name: conditional step no
+        id: condstep
+        if: ${{ env.hardening != "Dexguard" }}
+        run: |
+          echo "no"
+
+
       - name: aux action
         uses: DanielScapin/test-aux-action@main
         env:
