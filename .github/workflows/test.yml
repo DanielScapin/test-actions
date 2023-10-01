@@ -25,7 +25,7 @@ jobs:
       - name: print inputs
         run: |
           custom=${{ inputs.custom-value }}
-          custom=${$custom:-${{ inputs.custom-value.default }}}
+          custom=${$custom:-"${{ inputs.custom-value.default }}"}
           echo "custom-value: ${custom}"
 
       - name: step 1
