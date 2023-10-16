@@ -91,7 +91,7 @@ jobs:
 
 
       - name: aux action
-        uses: DanielScapin/test-aux-action@main
+        uses: DanielScapin/test-aux-action@testbranch
         env:
           apk_input: ${{ steps.step2.outputs.apk_input }}
 
