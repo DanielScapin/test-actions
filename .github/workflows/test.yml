@@ -94,7 +94,7 @@ jobs:
         id: versionget
         run: |
           set -x
-          du
+          du ../
           pwd
           version=$(cat version.txt|tr -d '\r')
           echo "extracted version: $version"
