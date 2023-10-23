@@ -23,7 +23,7 @@ jobs:
   testing:
     runs-on: macos-latest
     env:
-      hardening_ibnput: "Dexguard" # values are "Dexguard" or "Normal"
+      hardening_input: "Dexguard" # values are "Dexguard" or "Normal"
     steps:
 
       - name: Get Repository
@@ -121,7 +121,7 @@ jobs:
       
       - name: downlad ixguard
         id: ixguardownload
-        if: ${{ env.hardening == 'iXGuard' }}
+        if: ${{ env.custom == 'iXGuard' }}
         run: |
           set +x
           curl https://downloads.guardsquare.com/cli/latest_macos_amd64 -sL | tar -x
