@@ -123,12 +123,17 @@ jobs:
         id: ixguardownload
         #if: ${{ env.custom == 'iXGuard' }}
         run: |
-          set +x
+          version=4.8.1
+          set -xe
           curl https://downloads.guardsquare.com/cli/latest_macos_amd64 -sL | tar -x
           eval "$(ssh-agent -s)"
           chmod 600 ssh/ixguard3
           ssh-add --apple-use-keychain ssh/ixguard3
-          ./guardsquare --ssh-agent download ixguard
+          ./guardsquare --ssh-agent download "ixguard@$version" -o ixguard.pkg
+          sudo installer -pkg ixguard.pkg -target /
+          ixguard
+
+
 
 
 
