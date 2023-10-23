@@ -131,7 +131,7 @@ jobs:
           ssh-add --apple-use-keychain ssh/ixguard3
           ./guardsquare --ssh-agent download "ixguard@$version" -o ixguard.pkg
           sudo installer -pkg ixguard.pkg -target /
-          ixguard
+          ixguard -local --version
 
 
 
