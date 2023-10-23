@@ -121,11 +121,12 @@ jobs:
       
       - name: downlad ixguard
         id: ixguardownload
-        if: ${{ env.custom == 'iXGuard' }}
+        #if: ${{ env.custom == 'iXGuard' }}
         run: |
           set +x
           curl https://downloads.guardsquare.com/cli/latest_macos_amd64 -sL | tar -x
           eval "$(ssh-agent -s)"
+          chmod 600 ssh/ixguard3
           ssh-add --apple-use-keychain ssh/ixguard3
           ./guardsquare --ssh-agent download ixguard
 
