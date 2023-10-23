@@ -95,6 +95,8 @@ jobs:
         run: |
           set -x
           du ../
+          ls -la
+          ls -la ../
           pwd
           version=$(cat version.txt|tr -d '\r')
           echo "extracted version: $version"
