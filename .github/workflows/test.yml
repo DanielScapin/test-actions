@@ -25,6 +25,9 @@ jobs:
       hardening_ibnput: "Dexguard" # values are "Dexguard" or "Normal"
     steps:
 
+      - name: Get Repository
+        uses: actions/checkout@v3
+
       - name: Normalize inputs
         run: |
           custom=${{ inputs.custom_input }}
