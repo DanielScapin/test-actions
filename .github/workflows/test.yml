@@ -119,25 +119,25 @@ jobs:
           version: ${{ env.version_input }}
           output: app/build/outputs/apk/stage${hardening}/release/app-stage-release-signed.apk
       
-      # - name: downlad ixguard
-      #   id: ixguardownload
-      #   #if: ${{ env.custom == 'iXGuard' }}
-      #   run: |
-      #     version=4.8.1
-      #     set -xe
-      #     curl https://downloads.guardsquare.com/cli/latest_macos_amd64 -sL | tar -x
-      #     eval "$(ssh-agent -s)"
-      #     chmod 600 ssh/ixguard3
-      #     ssh-add --apple-use-keychain ssh/ixguard3
-      #     ./guardsquare --ssh-agent download "ixguard@$version" -o ixguard.pkg
-      #     sudo installer -pkg ixguard.pkg -target /
-      #     ixguard -local --version
+      - name: downlad ixguard
+        id: ixguardownload
+        if: ${{ env.custom == 'iXGuard' }}
+        run: |
+          version=4.8.1
+          set -xe
+          curl https://downloads.guardsquare.com/cli/latest_macos_amd64 -sL | tar -x
+          eval "$(ssh-agent -s)"
+          chmod 600 ssh/ixguard3
+          ssh-add --apple-use-keychain ssh/ixguard3
+          ./guardsquare --ssh-agent download "ixguard@$version" -o ixguard.pkg
+          sudo installer -pkg ixguard.pkg -target /
+          ixguard -local --version
 
-      - name: download ixguard 2
-        id: ixguarddownload2
-        uses: will-bank/will-ios-ixguard-setup-action@main
-        with:
-          ixguard_version: "4.8.1"
+      # - name: download ixguard 2
+      #   id: ixguarddownload2
+      #   uses: will-bank/will-ios-ixguard-setup-action@main
+      #   with:
+      #     ixguard_version: "4.8.1"
 
 
 
