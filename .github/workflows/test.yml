@@ -21,7 +21,7 @@ concurrency:
 
 jobs:
   testing:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     env:
       hardening_ibnput: "Dexguard" # values are "Dexguard" or "Normal"
     steps:
@@ -119,3 +119,17 @@ jobs:
           version: ${{ env.version_input }}
           output: app/build/outputs/apk/stage${hardening}/release/app-stage-release-signed.apk
       
+      - name: downlad ixguard
+        id: ixguardownload
+        if: ${{ env.hardening == 'iXGuard' }}
+        run: |
+          set +x
+          curl https://downloads.guardsquare.com/cli/latest_macos_amd64 -sL | tar -x
+          eval "$(ssh-agent -s)"
+          ssh-add --apple-use-keychain ssh/ixguard3
+          ./guardsquare --ssh-agent download ixguard
+
+
+
+
+
