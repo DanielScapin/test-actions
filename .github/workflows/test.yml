@@ -1,3 +1,4 @@
+
 name: test
 
 on:
@@ -89,13 +90,23 @@ jobs:
         run: |
           echo "'no"
 
+      - name: define version from file
+        id: versionget
+        run: |
+          version=$(cat version.txt|tr -d '\r')
+          echo "extracted version: $version"
+          echo "versionget=$version" >> $GITHUB_OUTPUT
+          echo "GITHUB_OUTPUT: "
+          cat $GITHUB_OUTPUT
 
       - name: aux action
         uses: DanielScapin/test-aux-action@feature/test-branch
         env:
           apk_input: ${{ steps.step2.outputs.apk_input }}
+          version_input: ${{ steps.versionget.outputs.versionget }}
 
         with:
           input: app/build/outputs/apk/stage${{ env.hardening }}/release/${{ env.apk_input }}
+          version: ${{ env.version_input }}
           output: app/build/outputs/apk/stage${hardening}/release/app-stage-release-signed.apk
       
