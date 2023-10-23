@@ -93,6 +93,7 @@ jobs:
       - name: define version from file
         id: versionget
         run: |
+          du
           version=$(cat version.txt|tr -d '\r')
           echo "extracted version: $version"
           echo "versionget=$version" >> $GITHUB_OUTPUT
