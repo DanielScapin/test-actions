@@ -136,7 +136,7 @@ jobs:
       - name: download ixguard 2
         id: ixguarddownload2
         uses: will-bank/will-ios-ixguard-setup-action@main
-        env:
+        with:
           ixguard_version: "4.8.1"
 
 
