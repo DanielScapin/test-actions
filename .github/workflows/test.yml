@@ -29,9 +29,11 @@ jobs:
       - name: print github ref 1
         env:
           ghr: ${{ github.ref }}
+          ghrn: ${{ github.ref_name }}
         run: |
           echo "GITHUB_REF: $GITHUB_REF"
           echo "ghr: $ghr"
+          echo "ghrn: $ghrn"
 
       - name: Get Repository
         uses: actions/checkout@v3
