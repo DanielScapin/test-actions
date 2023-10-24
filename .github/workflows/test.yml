@@ -27,17 +27,14 @@ jobs:
     steps:
 
       - name: print github ref 1
+        with:
+          ghr: ${{ env.GITHUB_REF }}
         run: |
-          export
           echo "GITHUB_REF: $GITHUB_REF"
+          echo "ghr: $ghr"
 
       - name: Get Repository
         uses: actions/checkout@v3
-
-      - name: print github ref 2
-        run: |
-          export
-          echo "GITHUB_REF: $GITHUB_REF" 
 
       - name: Normalize inputs
         run: |
