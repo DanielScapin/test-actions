@@ -27,7 +27,7 @@ jobs:
     steps:
 
       - name: print github ref 1
-        with:
+        env:
           ghr: ${{ env.GITHUB_REF }}
         run: |
           echo "GITHUB_REF: $GITHUB_REF"
