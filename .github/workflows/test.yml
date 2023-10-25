@@ -156,6 +156,7 @@ jobs:
       - name: test export 1
         run: |
           export test_export="works!"
+          echo "test_export: $test_export" 
 
       - name: test export 2
         run: |
