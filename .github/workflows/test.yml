@@ -61,7 +61,7 @@ jobs:
 
           echo "env.hardening ${{ env.hardening }}"
 
-          if [ ${{ env.hardening }} = "Dexguard" ]; then
+          if [ ${{ env.hardening }} == "Dexguard" ]; then
             testvar2="if works!"
           fi
 
