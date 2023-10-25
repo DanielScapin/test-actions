@@ -52,8 +52,6 @@ jobs:
       - name: step 1
         id: step1
         run: |
-          set -euo pipefail
-
           echo "testvar1 ${testvar1}"
           echo "testvar2 ${testvar2}"
           testvar1="change1"
@@ -63,6 +61,7 @@ jobs:
 
           echo "env.hardening ${{ env.hardening }}"
 
+          set -euo pipefail
           if [ ${{ env.hardening }} == "Dexguard" ]; then
             echo "waaaaat"
             testvar2="if works!"
