@@ -59,10 +59,10 @@ jobs:
           testvar2="change3"
           under_score="value ok"
 
-          echo "env.hardening ${{ env.hardening }}"
+          echo "env.hardening_input ${{ env.hardening_input }}"
 
           set -euo pipefail
-          if [ ${{ env.hardening }} == "Dexguard" ]; then
+          if [ ${{ env.hardening_input }} == "Dexguard" ]; then
             echo "waaaaat"
             testvar2="if works!"
           fi
