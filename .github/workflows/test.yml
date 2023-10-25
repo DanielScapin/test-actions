@@ -13,7 +13,9 @@ on:
         - iXGuard
         required: true
   push:
-    branches: ["*"]
+    branches: ["release/*"]
+  pull_request:
+    branches: ["main"]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
