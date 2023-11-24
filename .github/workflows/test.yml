@@ -34,14 +34,14 @@ jobs:
       - name: set artifact name
         id: artifactname
         run: |
-          aname="thisName - 123"
+          aname=""
           echo "artifact_name=$aname" >> $GITHUB_OUTPUT
 
       - name: Upload Artifacts
         if: success() || failure()
         uses: actions/upload-artifact@v3.1.3
         with:
-          name: "file_${{ steps.artifactname.outputs.artifact_name }}"
+          name: ${{ steps.artifactname.outputs.artifact_name }}
           path: |
             file.empty
 
