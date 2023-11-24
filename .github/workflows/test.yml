@@ -26,123 +26,143 @@ jobs:
       hardening_input: "Dexguard" # values are "Dexguard" or "Normal"
     steps:
 
-      - name: print github ref 1
-        env:
-          ghr: ${{ github.ref }}
-          ghrn: ${{ github.ref_name }}
+      - name: touch file 
         run: |
-          echo "GITHUB_REF: $GITHUB_REF"
-          echo "ghr: $ghr"
-          echo "ghrn: $ghrn"
+          touch file.empty
+          ls file.empty
 
-      - name: Get Repository
-        uses: actions/checkout@v3
-
-      - name: Normalize inputs
+      - name: set artifact name
+        id: artifactname
         run: |
-          custom=${{ inputs.custom_input }}
-          custom=${custom:-"defauting2"}
-          echo "custom-value: $custom"
-          echo "custom=$custom" >> $GITHUB_ENV
+          aname="thisName - 123"
+          echo "artifact_name=$aname" >> $GITHUB_OUTPUT
 
-      - name: print inputs
-        run: |
-          echo "custom: ${{ env.custom }}"
+      - name: Upload Artifacts
+        if: success() || failure()
+        uses: actions/upload-artifact@v3.1.3
+        with:
+          name: "file_${{ steps.artifactname.outputs.artifact_name }}"
+          path: |
+            file.empty
 
-      - name: step 1
-        id: step1
-        run: |
-          echo "testvar1 ${testvar1}"
-          echo "testvar2 ${testvar2}"
-          testvar1="change1"
-          testvar2="change2"
-          testvar2="change3"
-          under_score="value ok"
 
-          echo "env.hardening_input ${{ env.hardening_input }}"
+      # - name: print github ref 1
+      #   env:
+      #     ghr: ${{ github.ref }}
+      #     ghrn: ${{ github.ref_name }}
+      #   run: |
+      #     echo "GITHUB_REF: $GITHUB_REF"
+      #     echo "ghr: $ghr"
+      #     echo "ghrn: $ghrn"
 
-          set -euo pipefail
-          if [ ${{ env.hardening_input }} == "Dexguard" ]; then
-            echo "waaaaat"
-            testvar2="if works!"
-          fi
+      # - name: Get Repository
+      #   uses: actions/checkout@v3
 
-          echo "testvar1=$testvar1" >> $GITHUB_OUTPUT
-          echo "testvar2=$testvar2" >> $GITHUB_OUTPUT
-          echo "under_score=$under_score" >> $GITHUB_OUTPUT
-          echo "GITHUB_OUTPUT: "
-          cat $GITHUB_OUTPUT
+      # - name: Normalize inputs
+      #   run: |
+      #     custom=${{ inputs.custom_input }}
+      #     custom=${custom:-"defauting2"}
+      #     echo "custom-value: $custom"
+      #     echo "custom=$custom" >> $GITHUB_ENV
 
-      - name: step 2
-        id: step2
-        env:
-          var1: ${{ steps.step1.outputs.testvar1 }}
-          var2: ${{ steps.step1.outputs.testvar2 }}
-          var_underscore: ${{ steps.step1.outputs.under_score }}
-        run: |
-          echo "tv1 : ${{ steps.step1.outputs.testvar1 }}"
-          echo "tv2 : ${{ steps.step1.outputs.testvar2 }}"
-          echo "testvar1: $var1"
-          echo "testvar2: $var2"
-          echo "testvar1: ${var1}"
-          echo "testvar2: ${var2}"
-          echo "var_underscore: $var_underscore"
+      # - name: print inputs
+      #   run: |
+      #     echo "custom: ${{ env.custom }}"
+
+      # - name: step 1
+      #   id: step1
+      #   run: |
+      #     echo "testvar1 ${testvar1}"
+      #     echo "testvar2 ${testvar2}"
+      #     testvar1="change1"
+      #     testvar2="change2"
+      #     testvar2="change3"
+      #     under_score="value ok"
+
+      #     echo "env.hardening_input ${{ env.hardening_input }}"
+
+      #     set -euo pipefail
+      #     if [ ${{ env.hardening_input }} == "Dexguard" ]; then
+      #       echo "waaaaat"
+      #       testvar2="if works!"
+      #     fi
+
+      #     echo "testvar1=$testvar1" >> $GITHUB_OUTPUT
+      #     echo "testvar2=$testvar2" >> $GITHUB_OUTPUT
+      #     echo "under_score=$under_score" >> $GITHUB_OUTPUT
+      #     echo "GITHUB_OUTPUT: "
+      #     cat $GITHUB_OUTPUT
+
+      # - name: step 2
+      #   id: step2
+      #   env:
+      #     var1: ${{ steps.step1.outputs.testvar1 }}
+      #     var2: ${{ steps.step1.outputs.testvar2 }}
+      #     var_underscore: ${{ steps.step1.outputs.under_score }}
+      #   run: |
+      #     echo "tv1 : ${{ steps.step1.outputs.testvar1 }}"
+      #     echo "tv2 : ${{ steps.step1.outputs.testvar2 }}"
+      #     echo "testvar1: $var1"
+      #     echo "testvar2: $var2"
+      #     echo "testvar1: ${var1}"
+      #     echo "testvar2: ${var2}"
+      #     echo "var_underscore: $var_underscore"
           
-          apk_input="testteapk"
-          echo "apk_input=$apk_input" >> $GITHUB_OUTPUT
+      #     apk_input="testteapk"
+      #     echo "apk_input=$apk_input" >> $GITHUB_OUTPUT
       
         
 
-      - name: conditional step yes
-        id: condstep1
-        if: ${{ env.hardening == 'Dexguard' }}
-        run: |
-          echo "yes"
+      # - name: conditional step yes
+      #   id: condstep1
+      #   if: ${{ env.hardening == 'Dexguard' }}
+      #   run: |
+      #     echo "yes"
 
-      - name: conditional step no
-        id: condstep2
-        if: ${{ env.hardening != 'Dexguard' }}
-        run: |
-          echo "'no"
+      # - name: conditional step no
+      #   id: condstep2
+      #   if: ${{ env.hardening != 'Dexguard' }}
+      #   run: |
+      #     echo "'no"
 
-      - name: define version from file
-        id: versionget
-        run: |
-          set -x
-          du ../
-          ls -la
-          ls -la ../
-          pwd
-          version=$(cat version.txt|tr -d '\r')
-          echo "extracted version: $version"
-          echo "versionget=$version" >> $GITHUB_OUTPUT
-          echo "GITHUB_OUTPUT: "
-          cat $GITHUB_OUTPUT
+      # - name: define version from file
+      #   id: versionget
+      #   run: |
+      #     set -x
+      #     du ../
+      #     ls -la
+      #     ls -la ../
+      #     pwd
+      #     version=$(cat version.txt|tr -d '\r')
+      #     echo "extracted version: $version"
+      #     echo "versionget=$version" >> $GITHUB_OUTPUT
+      #     echo "GITHUB_OUTPUT: "
+      #     cat $GITHUB_OUTPUT
 
-      - name: aux action
-        uses: DanielScapin/test-aux-action@feature/test-branch
-        env:
-          apk_input: ${{ steps.step2.outputs.apk_input }}
-          version_input: ${{ steps.versionget.outputs.versionget }}
+      # - name: aux action
+      #   uses: DanielScapin/test-aux-action@feature/test-branch
+      #   env:
+      #     apk_input: ${{ steps.step2.outputs.apk_input }}
+      #     version_input: ${{ steps.versionget.outputs.versionget }}
 
-        with:
-          input: app/build/outputs/apk/stage${{ env.hardening }}/release/${{ env.apk_input }}
-          version: ${{ env.version_input }}
-          output: app/build/outputs/apk/stage${hardening}/release/app-stage-release-signed.apk
+      #   with:
+      #     input: app/build/outputs/apk/stage${{ env.hardening }}/release/${{ env.apk_input }}
+      #     version: ${{ env.version_input }}
+      #     output: app/build/outputs/apk/stage${hardening}/release/app-stage-release-signed.apk
       
-      - name: downlad ixguard
-        id: ixguardownload
-        if: ${{ env.custom == 'iXGuard' }}
-        run: |
-          version=4.8.1
-          set -xe
-          curl https://downloads.guardsquare.com/cli/latest_macos_amd64 -sL | tar -x
-          eval "$(ssh-agent -s)"
-          chmod 600 ssh/ixguard3
-          ssh-add --apple-use-keychain ssh/ixguard3
-          ./guardsquare --ssh-agent download "ixguard@$version" -o ixguard.pkg
-          sudo installer -pkg ixguard.pkg -target /
-          ixguard -local --version
+      # - name: downlad ixguard
+      #   id: ixguardownload
+      #   if: ${{ env.custom == 'iXGuard' }}
+      #   run: |
+      #     version=4.8.1
+      #     set -xe
+      #     curl https://downloads.guardsquare.com/cli/latest_macos_amd64 -sL | tar -x
+      #     eval "$(ssh-agent -s)"
+      #     chmod 600 ssh/ixguard3
+      #     ssh-add --apple-use-keychain ssh/ixguard3
+      #     ./guardsquare --ssh-agent download "ixguard@$version" -o ixguard.pkg
+      #     sudo installer -pkg ixguard.pkg -target /
+      #     ixguard -local --version
 
       # - name: download ixguard 2
       #   id: ixguarddownload2
