@@ -41,7 +41,7 @@ jobs:
         if: success() || failure()
         uses: actions/upload-artifact@v3.1.3
         with:
-          name: ${{ steps.artifactname.outputs.artifact_name }}
+          name: "b_${{ steps.artifactname.outputs.artifact_name }}"
           path: |
             file.empty
 
