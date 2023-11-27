@@ -40,7 +40,8 @@ jobs:
       - name: set artifact name
         id: artifactname
         run: |
-          aname="$GITHUB_RUN_ID"
+          github_runid=${GITHUB_RUN_ID:-"NULL"}
+          aname="run-$github_runid"
           echo "artifact_name=$aname" >> $GITHUB_OUTPUT
 
       - name: Upload Artifacts
