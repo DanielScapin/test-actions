@@ -44,8 +44,9 @@ jobs:
 
           githubrunid=${GITHUB_RUN_ID:-"NULL"}
           date=$(date "+%Y%m%d-%H%M%S")
+          githubworkflow=${GITHUB_WORKFLOW:-"NULL"}
 
-          aname="run-${githubrunid}_${date}"
+          aname="run-${githubrunid}_${date}_${githubworkflow}"
 
           echo "artifact_name=$aname" >> $GITHUB_OUTPUT
 
