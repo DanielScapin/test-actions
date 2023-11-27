@@ -40,7 +40,7 @@ jobs:
       - name: set artifact name
         id: artifactname
         run: |
-          aname=""
+          aname="${{ env.GITHUB_RUN_ID }}"
           echo "artifact_name=$aname" >> $GITHUB_OUTPUT
 
       - name: Upload Artifacts
