@@ -28,6 +28,7 @@ jobs:
 
       - name: touch file 
         run: |
+          export
           touch file.empty
           ls file.empty
 
