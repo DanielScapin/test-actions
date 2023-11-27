@@ -42,10 +42,10 @@ jobs:
         run: |
           set -eo pipefail
 
-          github_runid=${GITHUB_RUN_ID:-"NULL"}
+          githubrunid=${GITHUB_RUN_ID:-"NULL"}
           date=$(date "+%Y%m%d-%H%M%S")
 
-          aname="run-$github_runid_$date"
+          aname="run-${githubrunid}_${date}"
 
           echo "artifact_name=$aname" >> $GITHUB_OUTPUT
 
