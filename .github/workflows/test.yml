@@ -40,7 +40,7 @@ jobs:
       - name: set artifact name
         id: artifactname
         run: |
-          set -eo pipefail
+          set -euo pipefail
 
           githubrunid=${GITHUB_RUN_ID:-"NULL"}
           date=$(date "+%Y%m%d-%H%M%S")
