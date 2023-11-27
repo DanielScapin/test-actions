@@ -29,6 +29,11 @@ jobs:
       - name: touch file 
         run: |
           export
+          echo "--"
+          set
+          echo "--"
+          cat $GITHUB_ENV
+          echo "--"
           touch file.empty
           ls file.empty
 
