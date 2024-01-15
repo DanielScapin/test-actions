@@ -24,6 +24,7 @@ jobs:
     runs-on: macos-latest
     env:
       hardening_input: "Dexguard" # values are "Dexguard" or "Normal"
+      retention_input: 
     steps:
 
       - name: touch file 
@@ -52,8 +53,10 @@ jobs:
 
       - name: set retention-days
         run: |
+          retention_value = ${{ env.retention_input }}
+          retention=${retention_value:-""}
           echo "a"
-          echo "retention=" >> $GITHUB_ENV
+          echo "retention=$retention" >> $GITHUB_ENV
 
       - name: Upload Artifacts
         if: success() || failure()
