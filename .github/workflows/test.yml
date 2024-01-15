@@ -1,5 +1,5 @@
 
-name: test (aaa)
+name: test ()
 
 on:
   workflow_dispatch:
@@ -55,6 +55,7 @@ jobs:
         uses: actions/upload-artifact@v3.1.3
         with:
           name: "b_${{ steps.artifactname.outputs.artifact_name }}"
+          retention: 
           path: |
             file.empty
 
