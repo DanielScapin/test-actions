@@ -21,11 +21,24 @@ concurrency:
 
 jobs:
   testing:
-    runs-on: macos-latest
+    runs-on: macos-13-xlarge
     env:
       hardening_input: "Dexguard" # values are "Dexguard" or "Normal"
       retention_input: 
     steps:
+
+      - name: xcode
+        run: |
+          set -x
+
+          xcode-select --print-path
+          xcodebuild -version
+
+          ls -lah /Applications/Xcode*
+
+          sudo xcode-select -s /Applications/Xcode_15.2.app
+          xcode-select --print-path
+          xcodebuild -version
 
       - name: test yeetd
         run: |
