@@ -27,6 +27,14 @@ jobs:
       retention_input: 
     steps:
 
+      - name: test yeetd
+        run: |
+          set -euo pipefail
+          wget https://github.com/biscuitehh/yeetd/releases/download/1.0/yeetd-normal.pkg
+          sudo installer -pkg yeetd-normal.pkg -target /
+          yeetd &
+          ps -A | grep yee
+
       - name: touch file 
         run: |
           export
@@ -53,7 +61,7 @@ jobs:
 
       - name: set retention-days
         run: |
-          retention_value = ${{ env.retention_input }}
+          retention_value=${{ env.retention_input }}
           retention=${retention_value:-""}
           echo "a"
           echo "retention=$retention" >> $GITHUB_ENV
