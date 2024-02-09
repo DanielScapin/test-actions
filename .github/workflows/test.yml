@@ -21,7 +21,7 @@ concurrency:
 
 jobs:
   testing:
-    runs-on: macos-13-xlarge
+    runs-on: macos-13
     env:
       hardening_input: "Dexguard" # values are "Dexguard" or "Normal"
       retention_input: 
